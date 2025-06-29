@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelola Pesanan | Admin Furni</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Fonts dan FontAwesome -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background: #e6f3ec;
+            font-family: 'Poppins', Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 1240px;
+            margin: 56px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 10px 40px 0 rgba(80,100,128,0.08);
+            padding: 40px 32px 32px 32px;
+        }
+        h2 {
+            color: #49655b;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 0.7px;
+        }
+        .print-btn {
+            background: linear-gradient(90deg,#31a75d 80%, #62bb6a 100%) !important;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 11px 26px;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 22px;
+            margin-left: 0;
+            cursor: pointer;
+            box-shadow: 0 3px 12px 0 rgba(73,101,91,0.09);
+            transition: background 0.18s;
+        }
+        .print-btn:hover {
+            background: linear-gradient(90deg,#249b4e 70%, #56a64b 100%) !important;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 15px;
+            background: #fff;
+        }
+        th, td {
+            border-bottom: 1px solid #d6e0e7;
+            padding: 11px 8px;
+            text-align: left;
+        }
+        th {
+            background: #f0f9f4;
+            color: #49655b;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-weight: 600;
+        }
+        .badge.selesai {
+            background: #e6ffec;
+            color: #31845e;
+        }
+        .foto-produk {
+            width: 52px;
+            height: 36px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid #d6e0e7;
+            background: #f4f7fa;
+        }
+        .action-btn {
+            border: none;
+            border-radius: 5px;
+            padding: 7px 16px;
+            margin-right: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.16s;
+        }
+        .delete-btn {
+            background: #e74c3c;
+            color: #fff;
+        }
+        .delete-btn:hover { background: #c0392b;}
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: #31845e;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .back-link i {
+            margin-right: 5px;
+        }
+        .back-link:hover { text-decoration: underline; }
+        @media (max-width: 700px) {
+            .container { padding: 12px 2vw; }
+            table, thead, tbody, th, td, tr { font-size: 13px; }
+            th, td { padding: 7px 3px;}
+            .print-btn { font-size: 13px; padding: 8px 15px;}
+            .foto-produk { width: 32px; height: 22px;}
+        }
+        @media print {
+            .print-btn, .back-link, .action-btn, th:last-child, td:last-child { display: none !important; }
+            body, .container { background: #fff !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fa fa-clipboard-list"></i> Kelola Pesanan</h2>
+        <button class="print-btn" onclick="window.print()">
+            <i class="fa fa-print"></i> Print
+        </button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Foto Produk</th>
+                    <th>No. Pesanan</th>
+                    <th>Negara</th>
+                    <th>Pelanggan</th>
+                    <th>Email</th>
+                    <th>No. Telp</th>
+                    <th>Alamat</th>
+                    <th>Provinsi</th>
+                    <th>Kode Pos</th>
+                    <th>Tanggal</th>
+                    <th>Produk</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th style="text-align:center;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="ordersBody">
+                <!-- Diisi otomatis oleh JS -->
+            </tbody>
+        </table>
+        <a class="back-link" href="admin_dashboard.html"><i class="fa fa-arrow-left"></i> Kembali ke Dashboard</a>
+    </div>
+    <script>
+    // Ambil data pesanan
+    function getPelangganCheckout() {
+      try {
+        return JSON.parse(localStorage.getItem('pelanggan_furni')) || [];
+      } catch(e) { return []; }
+    }
+    function setPelangganCheckout(data) {
+      localStorage.setItem('pelanggan_furni', JSON.stringify(data));
+    }
+    function getProdukImg(produkArr){
+        if(!produkArr || !produkArr.length) return "images/product-1.png";
+        return produkArr[0].img || "images/product-1.png";
+    }
+    function getProdukList(produkArr){
+        if(!produkArr || !produkArr.length) return "-";
+        return produkArr.map(p => `${p.name} <small>(${p.qty}x)</small>`).join('<br>');
+    }
+    function getProdukTotal(produkArr){
+        if(!produkArr || !produkArr.length) return "-";
+        let total = 0;
+        produkArr.forEach(p=>{
+            total += (typeof p.price === "number" ? p.price : (parseInt((p.price+"").replace(/[^0-9]/g,''))||0)) * (p.qty||1);
+        });
+        return total;
+    }
+
+    // HANYA "SELESAI"
+    function getStatus(idx){
+        return '<span class="badge selesai">Selesai</span>';
+    }
+
+    function renderOrders() {
+      const data = getPelangganCheckout();
+      const tbody = document.getElementById('ordersBody');
+      if(!tbody) return;
+      if(!data.length){
+        tbody.innerHTML = `<tr><td colspan="14" style="text-align:center;color:#b2b8c1;">Belum ada pesanan masuk.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = data.map(function(p,idx){
+        let nama = ((p.nama_depan||"") + " " + (p.nama_belakang||"")).trim();
+        let email = p.email || "-";
+        let telp = p.telepon || "-";
+        let alamat = p.alamat || "-";
+        let negara = p.negara || (p.country_name || "-");
+        let prov = p.provinsi || p.state || p.state_country || "-";
+        let kodepos = p.kodepos || p.postal || p.postal_zip || "-";
+        let tanggal = p.tanggal ? (p.tanggal.split(",")[0] + (p.tanggal.split(",")[1] ? ", " + p.tanggal.split(",")[1] : "")) : "-";
+        let produk = getProdukList(p.produk);
+        let total = getProdukTotal(p.produk);
+        let totalRupiah = total === "-" ? "-" : "Rp"+total.toLocaleString('id-ID');
+        let img = getProdukImg(p.produk);
+        return `
+        <tr>
+          <td><img src="${img}" class="foto-produk" alt="Foto Produk"></td>
+          <td>ORD${12345+idx}</td>
+          <td>${negara}</td>
+          <td>${nama}</td>
+          <td>${email}</td>
+          <td>${telp}</td>
+          <td>${alamat}</td>
+          <td>${prov}</td>
+          <td>${kodepos}</td>
+          <td>${tanggal}</td>
+          <td>${produk}</td>
+          <td>${totalRupiah}</td>
+          <td>${getStatus(idx)}</td>
+          <td style="text-align:center;">
+              <button class="action-btn delete-btn" data-idx="${idx}"><i class="fa fa-trash"></i> Hapus</button>
+          </td>
+        </tr>
+        `;
+      }).join('');
+      // Aktifkan tombol hapus
+      document.querySelectorAll('.delete-btn').forEach(function(btn){
+        btn.onclick = function(){
+            if(confirm('Yakin ingin menghapus pesanan ini?')) {
+                const idx = parseInt(btn.getAttribute('data-idx'));
+                let data = getPelangganCheckout();
+                data.splice(idx, 1);
+                setPelangganCheckout(data);
+                renderOrders();
+            }
+        };
+      });
+    }
+    document.addEventListener("DOMContentLoaded", renderOrders);
+    </script>
+</body>
+</html>

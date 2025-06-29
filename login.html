@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts & Icon CDN -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background: #49655b;
+            font-family: 'Poppins', Arial, sans-serif;
+            min-height: 100vh;
+        }
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 95vh;
+        }
+        .login-box {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 10px 48px 0 rgba(80,100,128,0.08);
+            padding: 38px 32px 32px 32px;
+            width: 350px;
+            position: relative;
+            animation: fadeInUp 0.8s;
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0;}
+            to { transform: translateY(0); opacity: 1;}
+        }
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #49655b;      /* HIJAU */
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 18px;
+        }
+        .input-group input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 32px 12px 38px;
+            border: none;
+            border-radius: 14px;
+            outline: none;
+            font-size: 16px;
+            background: #eaf0ea;
+            color: #32584a;
+            box-shadow: 0 0 0 1.5px #d3e4dd;
+            font-family: 'Poppins', Arial, sans-serif;
+            display: block;
+            margin: 0;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .input-group input:focus {
+            background: #fff;
+            box-shadow: 0 0 0 2px #49655b;
+        }
+        .input-group .fa {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #93b2a6;
+            font-size: 18px;
+        }
+        .remember-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+        .remember-row input[type="checkbox"] {
+            accent-color: #49655b;
+            width: 16px;
+            height: 16px;
+        }
+        .remember-row label {
+            margin-left: 7px;
+            font-size: 15px;
+            color: #49655b;   /* HIJAU */
+            user-select: none;
+            font-weight: 600;
+        }
+        .login-box button {
+            width: 100%;
+            padding: 12px 0;
+            background: #eaf0ea;
+            color: #49655b;     /* HIJAU */
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 16px 0 rgba(34,87,122,0.10);
+            transition: background 0.18s, color 0.18s;
+            letter-spacing: 0.5px;
+        }
+        .login-box button:hover {
+            background: #c9ddd0;
+            color: #32584a;
+        }
+        .login-box .error {
+            color: #e00;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .login-footer {
+            text-align: center;
+            margin-top: 26px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        .login-footer a {
+            color: #49655b;      /* HIJAU */
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 450px) {
+            .login-box {
+                width: 95vw;
+                padding: 22px 8vw 22px 8vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+      <div class="login-box">
+        <h2><i class="fa fa-lock"></i> Admin Login</h2>
+        <!--
+        <div class="error">Username atau Password salah!</div>
+        -->
+        <form action="login_process.html" method="post" autocomplete="off">
+            <div class="input-group">
+                <i class="fa fa-user"></i>
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <i class="fa fa-key"></i>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="remember-row">
+                <input type="checkbox" name="remember_me" id="remember_me">
+                <label for="remember_me">Remember Me</label>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="login-footer">
+            &copy; 2025 Furni Admin &middot; <a href="index.html">Kembali ke Beranda</a>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

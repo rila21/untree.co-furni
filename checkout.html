@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="css/tiny-slider.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <title>Furni | Checkout</title>
+  </head>
+
+  <body>
+
+    <!-- Start Header/Navigation -->
+    <nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark" aria-label="Furni navigation bar">
+
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Furni<span>.</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsFurni">
+          <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+            <li class="nav-item ">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li><a class="nav-link" href="shop.html">Shop</a></li>
+            <li><a class="nav-link" href="about.html">About Us</a></li>
+            <li><a class="nav-link" href="services.html">Services</a></li>
+            <li><a class="nav-link" href="blog.html">Blog</a></li>
+            <li><a class="nav-link" href="contact.html">Contact Us</a></li>
+          </ul>
+
+          <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+            <li><a class="nav-link" href="cart.html"><img src="images/cart.svg"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Header/Navigation -->
+
+    <!-- Start Hero Section -->
+    <div class="hero">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-5">
+            <div class="intro-excerpt">
+              <h1>Checkout</h1>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Hero Section -->
+
+    <div class="untree_co-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <div class="border p-4 rounded" role="alert">
+              Pelanggan lama? <a href="#">Klik di sini</a> untuk masuk
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-5 mb-md-0">
+            <h2 class="h3 mb-3 text-black">Detail Penagihan</h2>
+            <div class="p-3 p-lg-5 border bg-white">
+              <!-- (form penagihan tidak diubah) -->
+              <div class="form-group">
+                <label for="c_country" class="text-black">Negara <span class="text-danger">*</span></label>
+                <select id="c_country" class="form-control">
+                  <option value="1">Pilih negara</option>    
+                  <option value="2">Bangladesh</option>    
+                  <option value="3">Algeria</option>    
+                  <option value="4">Afghanistan</option>    
+                  <option value="5">Ghana</option>    
+                  <option value="6">Albania</option>    
+                  <option value="7">Bahrain</option>    
+                  <option value="8">Kolombia</option>    
+                  <option value="9">Dominican Republic</option>  
+                  <option value="10">Indonesia</option>  
+                </select>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="c_fname" class="text-black">Nama Depan <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_fname" name="c_fname">
+                </div>
+                <div class="col-md-6">
+                  <label for="c_lname" class="text-black">Nama Belakang <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_lname" name="c_lname">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="c_companyname" class="text-black">Nama Perusahaan</label>
+                  <input type="text" class="form-control" id="c_companyname" name="c_companyname">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="c_address" class="text-black">Alamat <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Alamat Jalan">
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" placeholder="Apartemen, suite, unit dll. (opsional)">
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="c_state_country" class="text-black">Provinsi / Negara <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_state_country" name="c_state_country">
+                </div>
+                <div class="col-md-6">
+                  <label for="c_postal_zip" class="text-black">Kode Pos <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_postal_zip" name="c_postal_zip">
+                </div>
+              </div>
+              <div class="form-group row mb-5">
+                <div class="col-md-6">
+                  <label for="c_email_address" class="text-black">Alamat Email <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_email_address" name="c_email_address">
+                </div>
+                <div class="col-md-6">
+                  <label for="c_phone" class="text-black">No. Telepon <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Nomor Telepon">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="c_create_account" class="text-black" data-bs-toggle="collapse" href="#create_an_account" role="button" aria-expanded="false" aria-controls="create_an_account">
+                  <input type="checkbox" value="1" id="c_create_account"> Buat akun?
+                </label>
+                <div class="collapse" id="create_an_account">
+                  <div class="py-2 mb-4">
+                    <p class="mb-3">Buat akun dengan mengisi informasi di bawah ini. Jika Anda pelanggan lama silakan masuk di atas halaman.</p>
+                    <div class="form-group">
+                      <label for="c_account_password" class="text-black">Kata Sandi Akun</label>
+                      <input type="email" class="form-control" id="c_account_password" name="c_account_password" placeholder="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="c_ship_different_address" class="text-black" data-bs-toggle="collapse" href="#ship_different_address" role="button" aria-expanded="false" aria-controls="ship_different_address">
+                  <input type="checkbox" value="1" id="c_ship_different_address"> Kirim ke alamat berbeda?
+                </label>
+                <div class="collapse" id="ship_different_address">
+                  <div class="py-2">
+                    <div class="form-group">
+                      <label for="c_diff_country" class="text-black">Negara <span class="text-danger">*</span></label>
+                      <select id="c_diff_country" class="form-control">
+                        <option value="1">Pilih negara</option>    
+                        <option value="2">Bangladesh</option>    
+                        <option value="3">Algeria</option>    
+                        <option value="4">Afghanistan</option>    
+                        <option value="5">Ghana</option>    
+                        <option value="6">Albania</option>    
+                        <option value="7">Bahrain</option>    
+                        <option value="8">Kolombia</option>    
+                        <option value="9">Dominican Republic</option>    
+                      </select>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label for="c_diff_fname" class="text-black">Nama Depan <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_diff_fname" name="c_diff_fname">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="c_diff_lname" class="text-black">Nama Belakang <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_diff_lname" name="c_diff_lname">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-12">
+                        <label for="c_diff_companyname" class="text-black">Nama Perusahaan</label>
+                        <input type="text" class="form-control" id="c_diff_companyname" name="c_diff_companyname">
+                      </div>
+                    </div>
+                    <div class="form-group row  mb-3">
+                      <div class="col-md-12">
+                        <label for="c_diff_address" class="text-black">Alamat <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_diff_address" name="c_diff_address" placeholder="Alamat Jalan">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Apartemen, suite, unit dll. (opsional)">
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label for="c_diff_state_country" class="text-black">Provinsi / Negara <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_diff_state_country" name="c_diff_state_country">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="c_diff_postal_zip" class="text-black">Kode Pos <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_diff_postal_zip" name="c_diff_postal_zip">
+                      </div>
+                    </div>
+                    <div class="form-group row mb-5">
+                      <div class="col-md-6">
+                        <label for="c_diff_email_address" class="text-black">Alamat Email <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_diff_email_address" name="c_diff_email_address">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="c_diff_phone" class="text-black">No. Telepon <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="c_diff_phone" name="c_diff_phone" placeholder="Nomor Telepon">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="c_order_notes" class="text-black">Catatan Pesanan</label>
+                <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Tulis catatan di sini..."></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <h2 class="h3 mb-3 text-black">Kode Kupon</h2>
+                <div class="p-3 p-lg-5 border bg-white">
+                  <label for="c_code" class="text-black mb-3">Masukkan kode kupon jika Anda memilikinya</label>
+                  <div class="input-group w-75 couponcode-wrap">
+                    <input type="text" class="form-control me-2" id="c_code" placeholder="Kode Kupon" aria-label="Coupon Code" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-black btn-sm" type="button" id="button-addon2">Gunakan</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <h2 class="h3 mb-3 text-black">Pesanan Anda</h2>
+                <div class="p-3 p-lg-5 border bg-white">
+                  <table class="table site-block-order-table mb-5">
+                    <thead>
+                      <th>Produk</th>
+                      <th>Total</th>
+                    </thead>
+                    <tbody id="checkoutCartBody">
+                      <!-- Data produk akan diisi oleh JS -->
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td class="text-black font-weight-bold"><strong>Subtotal Keranjang</strong></td>
+                        <td class="text-black" id="checkoutSubtotal">Rp0</td>
+                      </tr>
+                      <tr>
+                        <td class="text-black font-weight-bold"><strong>Total Pesanan</strong></td>
+                        <td class="text-black font-weight-bold" id="checkoutTotal"><strong>Rp0</strong></td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <div class="border p-3 mb-3">
+                    <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Transfer Bank Langsung</a></h3>
+                    <div class="collapse" id="collapsebank">
+                      <div class="py-2">
+                        <p class="mb-0">Silakan lakukan pembayaran langsung ke rekening bank kami. Gunakan ID pesanan Anda sebagai referensi pembayaran. Pesanan Anda tidak akan dikirimkan hingga dana masuk ke rekening kami.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border p-3 mb-3">
+                    <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsecheque" role="button" aria-expanded="false" aria-controls="collapsecheque">Pembayaran Cek</a></h3>
+                    <div class="collapse" id="collapsecheque">
+                      <div class="py-2">
+                        <p class="mb-0">Silakan lakukan pembayaran langsung ke rekening bank kami. Gunakan ID pesanan Anda sebagai referensi pembayaran. Pesanan Anda tidak akan dikirimkan hingga dana masuk ke rekening kami.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border p-3 mb-5">
+                    <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsepaypal" role="button" aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
+                    <div class="collapse" id="collapsepaypal">
+                      <div class="py-2">
+                        <p class="mb-0">Silakan lakukan pembayaran langsung ke rekening bank kami. Gunakan ID pesanan Anda sebagai referensi pembayaran. Pesanan Anda tidak akan dikirimkan hingga dana masuk ke rekening kami.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Buat Pesanan</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Start Footer Section -->
+    <footer class="footer-section">
+      <div class="container relative">
+        <div class="sofa-img">
+          <img src="images/sofa.png" alt="Gambar" class="img-fluid">
+        </div>
+        <!-- ... (footer yang lain tetap sama) ... -->
+      </div>
+    </footer>
+    <!-- End Footer Section -->  
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/tiny-slider.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script>
+    // Format ke rupiah
+    function formatRupiah(number) {
+      return 'Rp' + Number(number).toLocaleString('id-ID');
+    }
+
+    // Ambil keranjang dari localStorage
+    function getCart() {
+      try {
+        return JSON.parse(localStorage.getItem('cart_furni')) || [];
+      } catch(e) { return []; }
+    }
+
+    // Render tabel pesanan checkout
+    function renderCheckoutCart() {
+      let cart = getCart();
+      let tbody = document.getElementById('checkoutCartBody');
+      let subtotal = 0;
+      tbody.innerHTML = '';
+      if(cart.length === 0){
+        tbody.innerHTML = '<tr><td colspan="2" class="text-center text-muted">Keranjang kosong.</td></tr>';
+        document.getElementById('checkoutSubtotal').innerText = formatRupiah(0);
+        document.getElementById('checkoutTotal').innerText = formatRupiah(0);
+      } else {
+        cart.forEach(item => {
+          let itemTotal = item.price * item.qty;
+          subtotal += itemTotal;
+          tbody.innerHTML += `
+            <tr>
+              <td>${item.name} &nbsp; x &nbsp; ${item.qty}</td>
+              <td>${formatRupiah(itemTotal)}</td>
+            </tr>
+          `;
+        });
+        document.getElementById('checkoutSubtotal').innerText = formatRupiah(subtotal);
+        document.getElementById('checkoutTotal').innerHTML = `<strong>${formatRupiah(subtotal)}</strong>`;
+      }
+    }
+
+    // Jalankan render saat halaman dimuat
+    document.addEventListener("DOMContentLoaded", function(){
+      renderCheckoutCart();
+
+      // Simpan data order ke localStorage saat "Buat Pesanan" ditekan
+      var orderBtn = document.querySelector(".btn.btn-black.btn-lg.py-3.btn-block");
+      if(orderBtn){
+        orderBtn.addEventListener("click", function(e){
+          // Ambil data input pelanggan
+          var nama_depan = document.getElementById('c_fname').value;
+          var nama_belakang = document.getElementById('c_lname').value;
+          var email = document.getElementById('c_email_address').value;
+          var telepon = document.getElementById('c_phone').value;
+          var alamat = document.getElementById('c_address').value;
+          var negara = document.getElementById('c_country') ? document.getElementById('c_country').options[document.getElementById('c_country').selectedIndex].text : "-";
+          var provinsi = document.getElementById('c_state_country') ? document.getElementById('c_state_country').value : "-";
+          var kodepos = document.getElementById('c_postal_zip') ? document.getElementById('c_postal_zip').value : "-";
+          var tanggal = new Date().toLocaleString("id-ID");
+
+          // Ambil produk & total dari cart
+          var cart = getCart();
+          var total = 0;
+          cart.forEach(function(p){ total += (p.price * p.qty); });
+
+          // Simpan detail produk dan total ke order
+          var pelanggan = [];
+          try {
+            pelanggan = JSON.parse(localStorage.getItem('pelanggan_furni')) || [];
+          } catch(e) {}
+
+          pelanggan.push({
+            nama_depan: nama_depan,
+            nama_belakang: nama_belakang,
+            email: email,
+            telepon: telepon,
+            alamat: alamat,
+            negara: negara,
+            provinsi: provinsi,
+            kodepos: kodepos,
+            tanggal: tanggal,
+            produk: cart, // array produk
+            total: total
+          });
+
+          // Simpan ke localStorage
+          localStorage.setItem('pelanggan_furni', JSON.stringify(pelanggan));
+          // hapus cart setelah checkout
+          localStorage.removeItem('cart_furni');
+        });
+      }
+    });
+
+    </script>
+
+  </body>
+</html>

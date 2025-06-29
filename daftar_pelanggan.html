@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Pelanggan | Furni Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background: #eaf0ea;
+            font-family: 'Poppins', Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 56px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 10px 40px 0 rgba(80,100,128,0.08);
+            padding: 40px 32px 32px 32px;
+        }
+        h2 {
+            color: #49655b;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 0.7px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 15px;
+            background: #fff;
+        }
+        th, td {
+            border-bottom: 1px solid #d3e4dd;
+            padding: 12px 10px;
+            text-align: left;
+        }
+        th {
+            background: #f3faf5;
+            color: #49655b;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: #31845e;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .back-link i {
+            margin-right: 5px;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .delete-btn {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .delete-btn:hover { background: #c0392b;}
+        @media (max-width: 600px) {
+            .container { padding: 15px 4vw; }
+            table, thead, tbody, th, td, tr { font-size: 13px; }
+            th, td { padding: 7px 4px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fa fa-address-book"></i> Daftar Pelanggan Checkout</h2>
+        <table id="pelangganTable">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>No. Telepon</th>
+                    <th>Alamat</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- data pelanggan otomatis diisi JS -->
+            </tbody>
+        </table>
+        <a class="back-link" href="admin_dashboard.html"><i class="fa fa-arrow-left"></i> Kembali ke Dashboard</a>
+    </div>
+    <script>
+    // Ambil data dari localStorage (key 'pelanggan_furni')
+    let data = [];
+    try {
+        data = JSON.parse(localStorage.getItem('pelanggan_furni')) || [];
+    } catch(e) { data = []; }
+    let tbody = document.querySelector('#pelangganTable tbody');
+    function renderTable(){
+        if(data.length === 0){
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#b2b8c1;">Belum ada pelanggan checkout.</td></tr>`;
+        }else{
+            tbody.innerHTML = data.map((p, i) =>
+                `<tr>
+                    <td>${(p.nama_depan||"") + " " + (p.nama_belakang||"")}</td>
+                    <td>${p.email||""}</td>
+                    <td>${p.telepon||""}</td>
+                    <td>${p.alamat||""}</td>
+                    <td>${p.tanggal||"-"}</td>
+                    <td>
+                        <button class="delete-btn" data-idx="${i}"><i class="fa fa-trash"></i> Hapus</button>
+                    </td>
+                </tr>`
+            ).join('');
+        }
+    }
+    renderTable();
+
+    // Handler tombol delete
+    tbody.addEventListener('click', function(e){
+        if(e.target.classList.contains('delete-btn') || (e.target.closest('.delete-btn'))){
+            const btn = e.target.closest('.delete-btn');
+            const idx = btn.getAttribute('data-idx');
+            if(confirm('Yakin ingin menghapus data pelanggan ini?')){
+                data.splice(idx, 1);
+                localStorage.setItem('pelanggan_furni', JSON.stringify(data));
+                renderTable();
+            }
+        }
+    });
+    </script>
+</body>
+</html>

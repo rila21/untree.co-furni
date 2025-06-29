@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelola User | Admin Furni</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Fonts dan FontAwesome -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background: #e6f3ec;
+            font-family: 'Poppins', Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 56px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 10px 40px 0 rgba(80,100,128,0.08);
+            padding: 40px 32px 32px 32px;
+        }
+        h2 {
+            color: #49655b;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 0.7px;
+        }
+        .add-btn {
+            background: linear-gradient(90deg,#49655b 80%, #62bb6a 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 11px 26px;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 22px;
+            cursor: pointer;
+            box-shadow: 0 3px 12px 0 rgba(73,101,91,0.09);
+            transition: background 0.18s;
+        }
+        .add-btn:hover {
+            background: linear-gradient(90deg,#345347 70%, #4aaf5a 100%);
+        }
+        .print-btn {
+            background: linear-gradient(90deg,#31a75d 80%, #62bb6a 100%) !important;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 11px 26px;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 22px;
+            margin-left: 10px;
+            cursor: pointer;
+            box-shadow: 0 3px 12px 0 rgba(73,101,91,0.09);
+            transition: background 0.18s;
+        }
+        .print-btn:hover {
+            background: linear-gradient(90deg,#249b4e 70%, #56a64b 100%) !important;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 15px;
+            background: #fff;
+        }
+        th, td {
+            border-bottom: 1px solid #d6e0e7;
+            padding: 11px 10px;
+            text-align: left;
+        }
+        th {
+            background: #f0f9f4;
+            color: #49655b;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .foto-user {
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 1.5px solid #d6e0e7;
+            background: #f4f7fa;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-weight: 600;
+        }
+        .badge.admin {
+            background: #e5f7ef;
+            color: #49655b;
+        }
+        .badge.user {
+            background: #e6ffec;
+            color: #31845e;
+        }
+        .badge.guest {
+            background: #fdf6e8;
+            color: #b18e32;
+        }
+        .action-btn {
+            border: none;
+            border-radius: 5px;
+            padding: 7px 14px;
+            margin-right: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.16s;
+        }
+        .edit-btn {
+            background: #62bb6a;
+            color: #fff;
+        }
+        .edit-btn:hover { background: #49655b;}
+        .delete-btn {
+            background: #e74c3c;
+            color: #fff;
+        }
+        .delete-btn:hover { background: #c0392b;}
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: #31845e;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .back-link i {
+            margin-right: 5px;
+        }
+        .back-link:hover { text-decoration: underline; }
+        /* MODAL */
+        .modal-bg {
+            display: none;
+            position: fixed;
+            z-index: 99;
+            left: 0; top: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(73,101,91,0.12);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-edit {
+            background: #fff;
+            border-radius: 13px;
+            box-shadow: 0 4px 30px 0 #b9d2c5;
+            padding: 32px 28px 24px 28px;
+            min-width: 280px;
+            width: 340px;
+            max-width: 95vw;
+            animation: fadeInModal 0.26s;
+        }
+        @keyframes fadeInModal { from {opacity:0;transform:translateY(60px);} to {opacity:1;transform:translateY(0);} }
+        .modal-edit h3 {
+            margin-top: 0;
+            color: #49655b;
+            font-size: 1.16rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .modal-edit label {
+            display: block;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #4e6482;
+            text-align: left;
+        }
+        .modal-edit input, .modal-edit select {
+            width: 100%;
+            padding: 7px 11px;
+            border: 1.3px solid #d6e0ed;
+            border-radius: 7px;
+            margin-top: 2px;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .foto-preview {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 7px;
+            border: 1.5px solid #d6e0e7;
+            background: #f4f7fa;
+            display: block;
+        }
+        .file-note {
+            color: #7a8997; font-size:12px; margin-top:0; margin-bottom:2px;
+        }
+        .modal-actions {
+            text-align: right;
+            margin-top: 16px;
+        }
+        .modal-actions button {
+            padding: 7px 20px;
+            margin-left: 7px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .modal-save { background: #62bb6a; color: #fff;}
+        .modal-cancel { background: #bdbdbd; color: #444;}
+        .modal-save:hover { background: #49655b;}
+        .modal-cancel:hover { background: #999;}
+        @media (max-width: 650px) {
+            .container { padding: 12px 2vw; }
+            table, thead, tbody, th, td, tr { font-size: 13px; }
+            th, td { padding: 7px 4px;}
+            .add-btn, .print-btn { font-size: 13px; padding: 8px 15px;}
+            .foto-user { width:28px; height:28px;}
+        }
+        @media print {
+            .add-btn, .print-btn, .back-link, .action-btn, th:last-child, td:last-child { display: none !important; }
+            body, .container { background: #fff !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fa fa-users"></i> Kelola User</h2>
+        <button class="add-btn"><i class="fa fa-user-plus"></i> Tambah User</button>
+        <button class="print-btn" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th style="text-align:center;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="images/person-1.png" class="foto-user" alt="User"></td>
+                    <td>Rina Melati</td>
+                    <td>rina@mail.com</td>
+                    <td><span class="badge admin">Admin</span></td>
+                    <td>Aktif</td>
+                    <td style="text-align:center;">
+                        <button class="action-btn edit-btn"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="action-btn delete-btn"><i class="fa fa-trash"></i> Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="images/person-2.png" class="foto-user" alt="User"></td>
+                    <td>Andi Saputra</td>
+                    <td>andi@mail.com</td>
+                    <td><span class="badge user">User</span></td>
+                    <td>Aktif</td>
+                    <td style="text-align:center;">
+                        <button class="action-btn edit-btn"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="action-btn delete-btn"><i class="fa fa-trash"></i> Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="images/person-3.png" class="foto-user" alt="User"></td>
+                    <td>Siti Aminah</td>
+                    <td>siti@mail.com</td>
+                    <td><span class="badge guest">Guest</span></td>
+                    <td>Tidak Aktif</td>
+                    <td style="text-align:center;">
+                        <button class="action-btn edit-btn"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="action-btn delete-btn"><i class="fa fa-trash"></i> Hapus</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="back-link" href="admin_dashboard.html"><i class="fa fa-arrow-left"></i> Kembali ke Dashboard</a>
+    </div>
+
+    <!-- MODAL EDIT USER -->
+    <div class="modal-bg" id="modalEdit">
+        <form class="modal-edit" id="editForm" onsubmit="return false;">
+            <h3>Edit User</h3>
+            <img id="fotoPreview" class="foto-preview" src="" alt="Preview">
+            <label class="file-note">Pilih foto dari komputer atau isi URL di bawah:</label>
+            <input type="file" id="editFotoFile" accept="image/*">
+            <label>URL Foto
+                <input type="text" id="editFoto" required>
+            </label>
+            <label>
+                Nama
+                <input type="text" id="editNama" required>
+            </label>
+            <label>
+                Email
+                <input type="email" id="editEmail" required>
+            </label>
+            <label>
+                Role
+                <select id="editRole" required>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                    <option value="guest">Guest</option>
+                </select>
+            </label>
+            <label>
+                Status
+                <select id="editStatus" required>
+                    <option value="Aktif">Aktif</option>
+                    <option value="Tidak Aktif">Tidak Aktif</option>
+                </select>
+            </label>
+            <div class="modal-actions">
+                <button type="button" class="modal-cancel" onclick="closeEditModal()">Batal</button>
+                <button type="submit" class="modal-save" id="saveBtn">Simpan</button>
+            </div>
+        </form>
+    </div>
+    <script>
+    // Tombol hapus
+    document.querySelectorAll('.delete-btn').forEach(function(btn){
+        btn.onclick = function(){
+            if(confirm('Yakin ingin menghapus user ini?')) {
+                this.closest('tr').remove();
+            }
+        };
+    });
+
+    // Edit User
+    let editingRow = null;
+    let fotoFileData = ""; // Untuk simpan dataURL file yang dipilih
+    document.querySelectorAll('.edit-btn').forEach(function(btn){
+        btn.onclick = function(){
+            const row = this.closest('tr');
+            editingRow = row;
+            // Isi modal dengan data baris user
+            document.getElementById('editNama').value = row.children[1].innerText;
+            document.getElementById('editEmail').value = row.children[2].innerText;
+            const src = row.children[0].querySelector('img').getAttribute('src');
+            document.getElementById('editFoto').value = src;
+            document.getElementById('fotoPreview').src = src;
+            fotoFileData = ""; // reset
+            document.getElementById('editFotoFile').value = "";
+            // Role
+            const role = row.children[3].querySelector('.badge').classList.contains('admin')
+                ? 'admin' : (row.children[3].querySelector('.badge').classList.contains('user')
+                ? 'user' : 'guest');
+            document.getElementById('editRole').value = role;
+            document.getElementById('editStatus').value = row.children[4].innerText;
+            document.getElementById('modalEdit').style.display = 'flex';
+        }
+    });
+
+    // Preview Foto: Jika pilih file
+    document.getElementById('editFotoFile').addEventListener('change', function(e){
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                document.getElementById('fotoPreview').src = evt.target.result;
+                fotoFileData = evt.target.result; // simpan dataURL
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+    // Preview Foto: Jika edit URL
+    document.getElementById('editFoto').addEventListener('input', function(){
+        if (!fotoFileData) { // hanya kalau belum milih file
+            document.getElementById('fotoPreview').src = this.value;
+        }
+    });
+
+    // Save Edit
+    document.getElementById('editForm').addEventListener('submit', function(){
+        if(!editingRow) return;
+        editingRow.children[1].innerText = document.getElementById('editNama').value;
+        editingRow.children[2].innerText = document.getElementById('editEmail').value;
+
+        // Pakai data file (dataURL) jika ada, jika tidak, pakai URL input
+        let imgSrc = fotoFileData ? fotoFileData : document.getElementById('editFoto').value;
+        editingRow.children[0].querySelector('img').setAttribute('src', imgSrc);
+
+        // Role badge
+        let roleVal = document.getElementById('editRole').value;
+        let roleText = (roleVal === 'admin') ? 'Admin' : (roleVal === 'user') ? 'User' : 'Guest';
+        let badgeClass = (roleVal === 'admin') ? 'admin' : (roleVal === 'user') ? 'user' : 'guest';
+        editingRow.children[3].innerHTML = `<span class="badge ${badgeClass}">${roleText}</span>`;
+
+        // Status
+        editingRow.children[4].innerText = document.getElementById('editStatus').value;
+
+        closeEditModal();
+    });
+
+    function closeEditModal() {
+        document.getElementById('modalEdit').style.display = 'none';
+        editingRow = null;
+        fotoFileData = "";
+    }
+    // Tutup modal jika klik luar modal
+    document.getElementById('modalEdit').addEventListener('click', function(e){
+        if(e.target === this) closeEditModal();
+    });
+    </script>
+</body>
+</html>
